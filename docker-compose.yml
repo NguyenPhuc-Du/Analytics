@@ -1,0 +1,55 @@
+x-spark-common: &spark-common
+  image: apache/spark:3.5.3-python3
+  user: "0:0"
+  volumes:
+    - ./data/gold:/data/gold:ro
+    - ./data/analytics:/data/analytics
+    - ./jobs:/opt/jobs
+    - ./reports:/opt/reports
+  networks:
+    - spark-net
+
+services:
+  spark-master:
+    <<: *spark-common
+    container_name: analytics-master
+    hostname: spark-master
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+    environment:
+      - SPARK_NO_DAEMONIZE=true
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+      - "4040:4040"
+
+  spark-worker-1:
+    <<: *spark-common
+    container_name: analytics-worker-1
+    hostname: spark-worker-1
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    environment:
+      - SPARK_NO_DAEMONIZE=true
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=2g
+    ports:
+      - "8081:8081"
+    depends_on:
+      - spark-master
+
+  spark-worker-2:
+    <<: *spark-common
+    container_name: analytics-worker-2
+    hostname: spark-worker-2
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    environment:
+      - SPARK_NO_DAEMONIZE=true
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=2g
+    ports:
+      - "8082:8081"
+    depends_on:
+      - spark-master
+
+networks:
+  spark-net:
+    driver: bridge
