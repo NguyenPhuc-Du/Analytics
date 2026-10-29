@@ -1,0 +1,15 @@
+SQL_STEPS = [
+    ("q1_kpi_monthly",          "kpi_monthly",              "1 tháng"),
+    ("q2_category_pareto",      "category_pareto",          "1 danh mục"),
+    ("q2_category_seasonality", "category_seasonality",     "1 danh mục × 1 tháng (2017)"),
+    ("q3_state_logistics",      "state_logistics",          "1 bang"),
+    ("q3_distance",             "insight_distance",         "1 band km"),
+    ("q4_rfm_score",            "rfm_scores",               "1 khách"),
+    ("q4_repeat_profile",       "repeat_profile",           "one_shot vs repeat"),
+    ("q4_repeat_categories",    "repeat_categories",        "1 danh mục của khách lặp"),
+    ("q5_seller_pareto",        "seller_pareto",            "1 seller"),
+    ("q5_seller_watchlist",     "seller_watchlist",         "seller doanh thu cao / ops kém"),
+    ("q6_late_vs_review",       "insight_late_vs_review",   "late vs on_time"),
+    ("q6_delay_vs_review",      "delay_vs_review",          "1 band ngày trễ"),
+    ("q6_payment",              "payment_mix",              "PTTT × kỳ trả góp"),
+]
