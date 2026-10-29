@@ -22,7 +22,7 @@ WHERE i.is_valid_sale
     AND i.distance_km IS NOT NULL
     AND o.order_status = 'delivered'
     AND NOT o.dq_carrier_before_purchase
-    AND NOT o.dq_delivery_whithout_date
+    AND NOT o.dq_delivered_without_date
     AND (i.purchase_year * 100 + i.purchase_month) BETWEEN 201701 AND 201808
 GROUP BY 1, 2
 ORDER BY 2

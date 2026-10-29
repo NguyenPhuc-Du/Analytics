@@ -15,8 +15,8 @@ SELECT
         / NULLIF(LAG(revenue) OVER w, 0), 2) AS revenue_mom_pct,
     ROUND(100.0 * (orders - LAG(orders) OVER w) 
         / NULLIF(LAG(orders) OVER w, 0), 2) AS orders_mom_pct,
-    ROUND(100.0 * (revenue - LAG(revenue) OVER w)
-        / NULLIF(LAG(revenue) OVER w, 0), 2) AS revenue_yoy_pct,
+    ROUND(100.0 * (revenue - LAG(revenue, 12) OVER w)
+        / NULLIF(LAG(revenue, 12) OVER w, 0), 2) AS revenue_yoy_pct,
     RANK() OVER (ORDER BY revenue DESC) AS revenue_rank,
     CASE WHEN purchase_year = 2017 AND purchase_month = 11 THEN TRUE ELSE FALSE END
         AS is_black_friday_month
