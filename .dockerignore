@@ -1,0 +1,5 @@
+# Image chỉ cài numpy; code và dữ liệu mount lúc chạy.
+.git
+.idea
+*
+!Dockerfile

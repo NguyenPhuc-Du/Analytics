@@ -1,5 +1,9 @@
+# Cụm Spark Analytics: 1 master + 2 worker.
+# Toàn bộ volume nằm trong repo này (không trỏ ../DataSet).
+# Chạy: docker compose up -d --build
 x-spark-common: &spark-common
-  image: apache/spark:3.5.3-python3
+  build: .
+  image: analytics-spark:3.5.3
   user: "0:0"
   volumes:
     - ./data/gold:/data/gold:ro

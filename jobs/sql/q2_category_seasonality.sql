@@ -8,4 +8,4 @@ SELECT
 FROM agg_category_monthly
 WHERE (purchase_year = 2017)
 GROUP BY category, purchase_month
-ORDER BY category, purchase_month;
+ORDER BY category, purchase_month
